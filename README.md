@@ -9,6 +9,8 @@
 
 A plugin to monitor the creation of lamella using AutoTEM on a TFS Acquilos instrument
 
+![monitor](https://user-images.githubusercontent.com/6081039/140525227-bb93dca9-f239-4c6c-83d1-4eb05a5de888.gif)
+
 ----------------------------------
 
 This [napari] plugin was generated with [Cookiecutter] using with [@napari]'s [cookiecutter-napari-plugin] template.
