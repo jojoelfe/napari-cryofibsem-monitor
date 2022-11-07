@@ -1,0 +1,15 @@
+name: napari-cryofibsem-monitor
+schema_version: 0.1.0
+contributions:
+  commands:
+  - id: napari-cryofibsem-monitor.ExampleQWidget
+    title: Create Example Q Widget
+    python_name: napari_cryofibsem_monitor._dock_widget:ExampleQWidget
+  - id: napari-cryofibsem-monitor.example_magic_widget
+    title: Create example_magic_widget
+    python_name: napari_cryofibsem_monitor._dock_widget:example_magic_widget
+  widgets:
+  - command: napari-cryofibsem-monitor.ExampleQWidget
+    display_name: Example Q Widget
+  - command: napari-cryofibsem-monitor.example_magic_widget
+    display_name: example_magic_widget
