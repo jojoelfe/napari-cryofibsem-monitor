@@ -6,7 +6,6 @@ see: https://napari.org/docs/dev/plugins/hook_specifications.html
 
 Replace code below according to your needs.
 """
-from napari_plugin_engine import napari_hook_implementation
 from qtpy.QtWidgets import QWidget, QVBoxLayout,  QHBoxLayout,QPushButton, QFileDialog, QGroupBox
 
 from matplotlib.backends.backend_qt5agg import FigureCanvas
@@ -96,7 +95,9 @@ class ExampleQWidget(QWidget):
             dci_images = sorted(glob.glob(os.path.join(site_directory,"DCImages/*/*.tif")))
             if len(dci_images) < 1:
                 continue
-            self.names.append(os.path.split(site_directory)[-2])
+            path = os.path.normpath(site_directory)
+            
+            self.names.append(path.split(os.sep)[-1])
             im_data.append([])
             for image_fn in dci_images:
                 im = tifffile.imread(image_fn)
@@ -107,12 +108,13 @@ class ExampleQWidget(QWidget):
         num_img = max([len(a) for a in im_data])
 
         im = np.zeros((num_sites,num_img,y,x))
-        for i,site in enumerate(im_data):
-            for j,mage in enumerate(site):
-                if mage.shape == (y,x):
-                    im[i,j,:,:] = mage
+        for i in range(num_sites):
+            for j in range(num_img):
+                if j < len(im_data[i]):
+                    image = im_data[i][j]
                 else:
-                    im[i,j,:mage.shape[0],:mage.shape[1]] = mage
+                    image = im_data[i][-1]
+                im[i,j,:image.shape[0],:image.shape[1]] = image
         
         if self.image_layer is None:
             self.image_layer = self.viewer.add_image(im,name="Cryo-FIB lamellas")
