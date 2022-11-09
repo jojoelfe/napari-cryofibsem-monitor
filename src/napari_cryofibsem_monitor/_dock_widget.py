@@ -53,6 +53,7 @@ class ExampleQWidget(QWidget):
         btn_align_site = QPushButton("Align Site")
         btn_align_site.clicked.connect(self._on_click_align_site)
         btn_align_all = QPushButton("Align All")
+        btn_align_all.clicked.connect(self._on_click_align_all)
         alignment_box = QGroupBox("Alignment")
         alignment_box.setLayout(QHBoxLayout())
         alignment_box.layout().addWidget(btn_align_site)
@@ -126,19 +127,29 @@ class ExampleQWidget(QWidget):
         self.update()
     
     def _on_click_align_site(self):
-        images = self.image_layer.data[self.viewer.dims.current_step[0]]
+        self.align_site(self.viewer.dims.current_step[0])
+        self.image_layer.refresh()
+    
+    def _on_click_align_all(self):
+        for i in range(self.image_layer.data.shape[0]):
+            self.align_site(i)
+        self.image_layer.refresh()
+
+    def align_site(self, index):
+        images = self.image_layer.data[index]
         prev_im = None
         for i,im in enumerate(images): 
             if prev_im is not None:
                 result = ird.translation(prev_im, im)
                 tvec = result["tvec"].round(4)
                 # the Transformed IMaGe.
-                timg = ird.transform_img(im, tvec=tvec)
+                timg = ird.transform_img(im, tvec=tvec, bgval=0.0)
             else:
                 timg = im    
             images[i,:,:] = timg
             prev_im = timg
-        self.image_layer.data[self.viewer.dims.current_step[0]] = images
+        
+
 
     def update_plot(self, event):
         prof = width_plot(self.image_layer.data[event.value[0],event.value[1],:,:])
