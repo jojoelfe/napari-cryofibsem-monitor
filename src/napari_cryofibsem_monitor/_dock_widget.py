@@ -37,7 +37,7 @@ class ExampleQWidget(QWidget):
         self.viewer = napari_viewer
         self.image_layer = None
 
-        btn_autotem_directory = QPushButton("Select AutoTEM directort")
+        btn_autotem_directory = QPushButton("Select AutoTEM Directory")
         btn_autotem_directory.clicked.connect(self._on_click)
 
         self.btn_update = QPushButton("Update")
