@@ -9,7 +9,15 @@
 
 A plugin to monitor the creation of lamella using AutoTEM on a TFS Acquilos instrument
 
-![monitor](https://user-images.githubusercontent.com/6081039/140525227-bb93dca9-f239-4c6c-83d1-4eb05a5de888.gif)
+
+https://user-images.githubusercontent.com/6081039/201448228-fdd8b429-8ff6-4934-ad58-e80fbfcbaef0.mp4
+
+## Changelog
+
+- **v0.2.0** 
+    - Update data during milling
+    - Align images to keep lamella in the center
+    - Monitor thickness
 
 ----------------------------------
 
