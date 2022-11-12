@@ -157,7 +157,7 @@ class ExampleQWidget(QWidget):
         self.static_ax.prof_plot[0].set_data(dat[0],prof)
         if hasattr(self.static_ax, "fill_plot"):
             self.static_ax.fill_plot.remove()
-        self.static_ax.fill_plot = self.static_ax.fill_between(dat[0],np.max(prof)*0.1,prof,interpolate=True,where=prof > np.max(prof*0.1),color="red")
+        self.static_ax.fill_plot = self.static_ax.fill_between(dat[0],0,prof,interpolate=True,where=prof > np.max(prof*0.3),color="red")
         right_end = max([np.max(path.vertices[:,0]) for path in self.static_ax.fill_plot.get_paths()])
         left_end = min([np.min(path.vertices[:,0]) for path in self.static_ax.fill_plot.get_paths()])
         thickness = right_end-left_end
