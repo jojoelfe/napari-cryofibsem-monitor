@@ -14,7 +14,7 @@ https://user-images.githubusercontent.com/6081039/201448228-fdd8b429-8ff6-4934-a
 
 ## Changelog
 
-- **v0.0.2** 
+- **v0.0.3** 
     - Update data during milling
     - Align images to keep lamella in the center
     - Monitor thickness
